@@ -1,0 +1,494 @@
+<h1>python-markdown2 Changelog</h1>
+
+<h2>python-markdown2 2.1.0</h2>
+
+<ul>
+<li><p>[&ldquo;nofollow&rdquo; extra, issue #74, pull #104] Add <code>rel=&quot;nofollow&quot;</code> support
+(mostly by https://github.com/cdman):</p>
+
+<pre><code>$ echo &#39;[link](http://example)&#39; | markdown2 -x nofollow
+&lt;p&gt;&lt;a rel=&quot;nofollow&quot; href=&quot;http://example&quot;&gt;link&lt;/a&gt;&lt;/p&gt;</code></pre></li>
+</ul>
+
+<p>Limitation: This <em>can</em> add a duplicate &#39;rel&#39; attribute to raw HTML links
+   in the input.</p>
+
+<h2>python-markdown2 2.0.1</h2>
+
+<ul>
+<li><p>[&ldquo;toc&rdquo; extra] Unescape Markdown special chars in TOC entries. See
+<a href="https://github.com/trentm/restdown/issues/15">https://github.com/trentm/restdown/issues/15</a>.</p></li>
+<li><p>Now &#39;tox&#39; testing support (by github.com/msabramo):</p>
+
+<pre><code>[sudo] pip install tox
+tox</code></pre></li>
+</ul>
+
+<p>confirming that markdown2 works with jython (not sure which version) and
+  pypy!  Also added pypy to travis-ci testing
+  (http://travis-ci.org/#!/trentm/python-markdown2).</p>
+
+<h2>python-markdown2 2.0.0</h2>
+
+<ul>
+<li><p>[issue #90] Add a <code>Markdown.preprocess(text) -&gt; text</code> hook for subclasses.
+This is a match for the <code>Markdown.postprocess(text) -&gt; text</code> hook added in
+an earlier version. (by @joestump).</p></li>
+<li><p>[issue #90, backward incompatible change] Require a space between the &#39;#&#39;
+and a text for a title. I.e.:</p>
+
+<pre><code># This still works
+
+#This doesn&#39;t work
+
+##Nor this</code></pre></li>
+</ul>
+
+<p>This keeps comments, hash tags, and ticket numbers at the beginning of the
+  line from turning into an h1. (by @joestump)</p>
+
+<p>This is a backward incompatible change, however small, hence the version
+  change to 2.0.0.</p>
+
+<h2>python-markdown2 1.4.2</h2>
+
+<ul>
+<li>[issue #84, issue #87] Fix problems with fenced-code-blocks getting
+double-processed.</li>
+</ul>
+
+<h2>python-markdown2 1.4.1</h2>
+
+<ul>
+<li><p>[issue #67] Fix an sub-<code>ul</code> inside a <code>ol</code> not working with an indent less
+than 4 spaces.</p></li>
+<li><p>Fix code blocks and fenced-code-blocks to work with a single leading newline
+at the start of the input.</p></li>
+<li><p>[issue #86, &#39;fenced-code-blocks&#39; extra] Fix fenced code blocks not being
+parsed out before other syntax elements, like headers.</p></li>
+<li><p>[issue #83, &#39;fenced-code-blocks&#39; and &#39;code-color&#39; extras] Allow &#39;cssclass&#39;
+code coloring option (passed to pygments) to be overridden (by
+https://github.com/kaishaku). E.g.:</p>
+
+<pre><code>import markdown2
+html = markdown2.markdown(text,
+    extras={&#39;fenced-code-blocks&#39;: {&#39;cssclass&#39;: &#39;mycode&#39;}})</code></pre></li>
+</ul>
+
+<h2>python-markdown2 1.4.0</h2>
+
+<ul>
+<li>[issue #64] Python 3 support! markdown2.py supports Python 2 and 3 in the
+same file without requiring install-time 2to3 transformation.</li>
+</ul>
+
+<h2>python-markdown2 1.3.1</h2>
+
+<ul>
+<li>[issue #80] Jython 2.2.1 support fix (by github.com/clach04)</li>
+</ul>
+
+<h2>python-markdown2 1.3.0</h2>
+
+<ul>
+<li><p>Deprecate <code>code-color</code> extra. Use the <code>fenced-code-block</code> extra and
+its cleaner mechanism for specifying the language, instead. This extra
+will be removed in v2.0 or so.</p></li>
+<li><p>New <code>fenced-code-blocks</code> extra. It allows a code block to not have to be
+indented by fencing it with &#39;&ldquo;&#39; on a line before and after. Based on
+<a href="http://github.github.com/github-flavored-markdown/">GFM</a>.</p>
+
+<pre><code>Some code:
+
+```
+print &quot;hi&quot;
+```</code></pre></li>
+</ul>
+
+<p>It includes support for code syntax highlighting as per GFM. This requires
+  the <code>pygments</code> Python module to be on the pythonpath.</p>
+
+<pre><code>```python
+    if True:
+        print &quot;hi&quot;
+    ```</code></pre>
+
+<h2>python-markdown2 1.2.0</h2>
+
+<ul>
+<li>[issue #78, issue #77] Add &quot;metadata&rdquo; extra (github.com/slomo).</li>
+</ul>
+
+<h2>python-markdown2 1.1.1</h2>
+
+<ul>
+<li>Drop &ldquo;Makefile.py&rdquo; (a <code>mk</code> thing) and simplify to &ldquo;Makefile&rdquo;.</li>
+</ul>
+
+<h2>python-markdown2 1.1.0</h2>
+
+<ul>
+<li><p>[issue #76] Ensure &ldquo;smarty-pants&rdquo; extra doesn&#39;t destroy image links
+and links with title text.</p></li>
+<li><p>[issue #72] Support reading from stdin for command line tool like any
+well-behaved unix tool, e.g.:</p>
+
+<p>$ echo &#39;<em>hi</em>&#39; | markdown2
+  <p><em>hi</em></p></p></li>
+</ul>
+
+<p>Thanks Ryan!</p>
+
+<ul>
+<li>Drop this &ldquo;1.0.1.<em>&rdquo; version silliness. The idea *was</em> that the first three
+numbers tracked the Markdown.pl on which markdown2.py was originally based.
+I don&#39;t believe Markdown.pl really gets releases anymore tho, so pointless.</li>
+</ul>
+
+<h2>python-markdown2 1.0.1.19</h2>
+
+<ul>
+<li>[Issue 66] Add &ldquo;wiki-tables&rdquo; extra for Google Code Wiki-style tables.
+See <a href="http://code.google.com/p/support/wiki/WikiSyntax#Tables">http://code.google.com/p/support/wiki/WikiSyntax#Tables</a>.</li>
+</ul>
+
+<h2>python-markdown2 1.0.1.18</h2>
+
+<ul>
+<li><p>[Issue 57] Add html5 block tags (article, section, aside, et al; see
+&ldquo;_html5tags&rdquo; variable) to Markdown literal HTML block tag handling. Thanks
+Tim Gray!</p></li>
+<li><p>[Issue 56] Fix <code>setup.py install</code>.</p></li>
+<li><p>[Issue 54] Fix escaping of link title attributes. Thanks FND!</p></li>
+<li><p>Tweak list matching to NOT make a ul for something like this:</p>
+
+<pre><code>- - - - - hi there</code></pre></li>
+</ul>
+
+<p>Before this change this would be a silly 5-deep nested li. See
+  &ldquo;not_quite_a_list&rdquo; test case.</p>
+
+<ul>
+<li><p>[Issue 52] Fix potential pathologically slow matching for <code>&lt;hr&gt;</code> markdown
+(&ldquo;slow_hr&rdquo; test case).</p></li>
+<li><p>Add a <code>Markdown.postprocess(text) -&gt; text</code> hook that is called near the end
+of markdown conversion. By default this does no transformation. It is called
+just before unescaping of special characters and unhashing of literal HTML
+blocks.</p></li>
+<li><p>[&ldquo;header-ids&rdquo; and &ldquo;toc&rdquo; extras] Add &ldquo;n&rdquo; argument to
+<code>Markdown.header_id_from_text</code> hook. This allows a subclass using this hook
+to differentiate the header id based on the hN number (e.g. h1 diff that
+h2). Also allow a <code>None</code> return value to not add an id to that header (and
+exclude that header from the TOC).</p></li>
+</ul>
+
+<p>Note: If you used this hook, this is an incompatible change to the call
+  signature.</p>
+
+<ul>
+<li><p>Add a &ldquo;markdown-in-html&rdquo; extra similar to (but limited)
+<a href="http://michelf.com/projects/php-markdown/extra/#markdown-attr">http://michelf.com/projects/php-markdown/extra/#markdown-attr</a>. I.e. this:</p>
+
+<pre><code>&lt;div markdown=&quot;1&quot;&gt;
+Yo **yo**!
+&lt;/div&gt;</code></pre></li>
+</ul>
+
+<p>becomes:</p>
+
+<pre><code>&lt;div&gt;
+
+    Yo &lt;strong&gt;yo&lt;/strong&gt;!
+
+    &lt;/div&gt;</code></pre>
+
+<ul>
+<li><p>[Issue 39] Test case fix for pygments 1.3.1 from thomas.moschny.</p></li>
+<li><p>[Issue 42] Add &ldquo;smarty-pants&rdquo; extra for transforming plain ASCII
+punctuation characters into smart typographic punctuation HTML entities.
+Inspiration: <a href="http://daringfireball.net/projects/smartypants/">http://daringfireball.net/projects/smartypants/</a>
+Implementation by Nikhil Chelliah. Also add <code>\&#39;</code> and <code>\&quot;</code> escape sequences
+for forcing dumb quotes when this extra is in use.</p></li>
+<li><p>Guard against using <code>True</code> instead of <code>None</code> as follows
+<code>markdown(..., extras={&#39;header-ids&#39;: True})</code>. <code>None</code> is wanted, but <code>True</code>
+is commonly (at least I did it twice) used.</p></li>
+</ul>
+
+<h2>python-markdown2 1.0.1.17</h2>
+
+<ul>
+<li><p>[Issue 36] Fix &ldquo;cuddled-lists&rdquo; extra handling for an
+looks-like-a-cuddled-list-but-is-indented block. See the
+&ldquo;test/tm-cases/cuddled_list_indented.text&rdquo; test case.</p></li>
+<li><p>Experimental new &ldquo;toc&rdquo; extra. The returned string from conversion will have
+a <code>toc_html</code> attribute.</p></li>
+<li><p>New &ldquo;header-ids&rdquo; extra that will add an <code>id</code> attribute to headers:</p>
+
+<pre><code># My First Section</code></pre></li>
+</ul>
+
+<p>will become:</p>
+
+<pre><code>&lt;h1 id=&quot;my-first-section&quot;&gt;My First Section&lt;/h1&gt;</code></pre>
+
+<p>An argument can be give for the extra, which will be used as a prefix for
+  the ids:</p>
+
+<pre><code>$ cat foo.txt
+    # hi there
+    $ python markdown2.py foo.txt
+    &lt;h1&gt;hi there&lt;/h1&gt;
+    $ python markdown2.py foo.txt -x header-ids
+    &lt;h1 id=&quot;hi-there&quot;&gt;hi there&lt;/h1&gt;
+    $ python markdown2.py foo.txt -x header-ids=prefix
+    &lt;h1 id=&quot;prefix-hi-there&quot;&gt;hi there&lt;/h1&gt;</code></pre>
+
+<ul>
+<li>Preliminary support for &ldquo;html-classes&rdquo; extra: takes a dict mapping HTML tag
+to the string value to use for a &ldquo;class&rdquo; attribute for that emitted tag.
+Currently just supports &ldquo;pre&rdquo; and &ldquo;code&rdquo; for code <em>blocks</em>.</li>
+</ul>
+
+<h2>python-markdown2 1.0.1.16</h2>
+
+<ul>
+<li><p>[Issue 33] Implement a &ldquo;cuddled-lists&rdquo; extra that allows:</p>
+
+<pre><code>I did these things:
+* bullet1
+* bullet2
+* bullet3</code></pre></li>
+</ul>
+
+<p>to be converted to:</p>
+
+<pre><code>&lt;p&gt;I did these things:&lt;/p&gt;
+
+    &lt;ul&gt;
+    &lt;li&gt;bullet1&lt;/li&gt;
+    &lt;li&gt;bullet2&lt;/li&gt;
+    &lt;li&gt;bullet3&lt;/li&gt;
+    &lt;/ul&gt;</code></pre>
+
+<h2>python-markdown2 1.0.1.15</h2>
+
+<ul>
+<li>[Issue 30] Fix a possible XSS via JavaScript injection in a carefully
+crafted image reference (usage of double-quotes in the URL).</li>
+</ul>
+
+<h2>python-markdown2 1.0.1.14</h2>
+
+<ul>
+<li>[Issue 29] Fix security hole in the md5-hashing scheme for handling HTML
+chunks during processing.</li>
+<li>[Issue 27] Fix problem with underscores in footnotes content (with
+&ldquo;footnotes&rdquo; extra).</li>
+</ul>
+
+<h2>python-markdown2 1.0.1.13</h2>
+
+<ul>
+<li>[Issue 24] Set really long sentinel for max-length of link text to avoid
+problems with reasonably long ones.</li>
+<li>[Issue 26] Complete the fix for this issue. Before this change the
+randomized obscuring of &#39;mailto:&#39; link letters would sometimes result
+in emails with underscores getting misinterpreted as for italics.</li>
+</ul>
+
+<h2>python-markdown2 1.0.1.12</h2>
+
+<ul>
+<li>[Issue 26] Fix bug where email auto linking wouldn&#39;t work for emails with
+underscores. E.g. <code>Mail me: &lt;foo_bar@example.com&gt;</code> wouldn&#39;t work.</li>
+<li>Update MANIFEST.in to ensure bin/markdown2 gets included in sdist.</li>
+<li><p>[Issue 23] Add support for passing options to pygments for the &ldquo;code-color&rdquo;
+extra. For example:</p>
+
+<pre><code>&gt;&gt;&gt; markdown(&quot;...&quot;, extras={&#39;code-color&#39;: {&quot;noclasses&quot;: True}})</code></pre></li>
+</ul>
+
+<p>This <code>formatter_opts</code> dict is passed to the pygments HtmlCodeFormatter.
+  Patch from &#39;svetlyak.40wt&#39;.
+- [Issue 21] Escape naked &#39;&gt;&#39; characters, as is already done for &#39;&amp;&#39; and &#39;&lt;&#39;
+  characters. Note that other markdown implementations (both Perl and PHP) do
+  <em>not</em> do this. This results in differing output with two 3rd-party tests:
+  &ldquo;php-markdown-cases/Backslash escapes.text&rdquo; and &ldquo;markdowntest-cases/Amps
+  and angle encoding.tags&rdquo;.
+- &ldquo;link-patterns&rdquo; extra: Add support for the href replacement being a
+  callable, e.g.:</p>
+
+<pre><code>&gt;&gt;&gt; link_patterns = [
+    ...     (re.compile(&quot;PEP\s+(\d+)&quot;, re.I),
+    ...      lambda m: &quot;http://www.python.org/dev/peps/pep-%04d/&quot; % int(m.group(1))),
+    ... ]
+    &gt;&gt;&gt; markdown2.markdown(&quot;Here is PEP 42.&quot;, extras=[&quot;link-patterns&quot;],
+    ...     link_patterns=link_patterns)
+    u&#39;&lt;p&gt;Here is &lt;a href=&quot;http://www.python.org/dev/peps/pep-0042/&quot;&gt;PEP 42&lt;/a&gt;.&lt;/p&gt;\n&#39;</code></pre>
+
+<h2>python-markdown2 1.0.1.11</h2>
+
+<ul>
+<li>Fix syntax_color test for the latest Pygments.</li>
+<li>[Issue 20] Can&#39;t assume that <code>sys.argv</code> is defined at top-level code &ndash;
+e.g. when used at a PostreSQL stored procedure. Fix that.</li>
+</ul>
+
+<h2>python-markdown2 1.0.1.10</h2>
+
+<ul>
+<li>Fix sys.path manipulation in setup.py so <code>easy_install markdown2-*.tar.gz</code>
+works. (Henry Precheur pointed out the problem.)</li>
+<li>&ldquo;bin/markdown2&rdquo; is now a stub runner script rather than a symlink to
+&ldquo;lib/markdown2.py&rdquo;. The symlink was a problem for sdist: tar makes it a
+copy.</li>
+<li>Added &#39;xml&#39; extra: passes <em>one-liner</em> XML processing instructions and
+namespaced XML tags without wrapping in a <code>&lt;p&gt;</code> &ndash; i.e. treats them as a HTML
+block tag.</li>
+</ul>
+
+<h2>python-markdown2 1.0.1.9</h2>
+
+<ul>
+<li>Fix bug in processing text with two HTML comments, where the first comment
+is cuddled to other content. See &ldquo;test/tm-cases/two_comments.text&rdquo;. Noted
+by Wolfgang Machert.</li>
+<li>Revert change in v1.0.1.6 passing XML processing instructions and one-liner
+tags. This changed caused some bugs. Similar XML processing support will
+make it back via an &ldquo;xml&rdquo; extra.</li>
+</ul>
+
+<h2>python-markdown2 1.0.1.8</h2>
+
+<ul>
+<li>License note updates to facilitate Thomas Moschny building a package for
+Fedora Core Linux. No functional change.</li>
+</ul>
+
+<h2>python-markdown2 1.0.1.7</h2>
+
+<ul>
+<li>Add a proper setup.py and release to pypi:
+http://pypi.python.org/pypi/markdown2/</li>
+<li>Move markdown2.py module to a lib subdir. This allows one to put the &ldquo;lib&rdquo;
+dir of a source checkout (e.g. via an svn:externals) on ones Python Path
+without have the .py files at the top-level getting in the way.</li>
+</ul>
+
+<h2>python-markdown2 1.0.1.6</h2>
+
+<ul>
+<li>Fix Python 2.6 deprecation warning about the <code>md5</code> module.</li>
+<li><p>Pass XML processing instructions and one-liner tags. For example:</p>
+
+<pre><code>&lt;?blah ...?&gt;
+&lt;xi:include xmlns:xi=&quot;...&quot; /&gt;</code></pre></li>
+</ul>
+
+<p>Limitations: they must be on one line. Test: pi_and_xinclude.
+  Suggested by Wolfgang Machert.</p>
+
+<h2>python-markdown2 1.0.1.5</h2>
+
+<ul>
+<li>Add ability for &#39;extras&#39; to have arguments. Internally the &#39;extras&#39;
+attribute of the Markdown class is a dict (it was a set).</li>
+<li><p>Add &ldquo;demote-headers&rdquo; extra that will demote the markdown for, e.g., an h1
+to h2-6 by the number of the demote-headers argument.</p>
+
+<pre><code>&gt;&gt;&gt; markdown(&#39;# this would be an h1&#39;, extras={&#39;demote-headers&#39;: 2})
+u&#39;&lt;h3&gt;this would be an h1&lt;/h3&gt;\n&#39;</code></pre></li>
+</ul>
+
+<p>This can be useful for user-supplied Markdown content for a sub-section of
+  a page.</p>
+
+<h2>python-markdown2 1.0.1.4</h2>
+
+<ul>
+<li>[Issue 18] Allow spaces in the URL for link definitions.</li>
+<li>[Issue 15] Fix some edge cases with backslash-escapes.</li>
+<li><p>Fix this error that broken command-line usage:</p>
+
+<pre><code>NameError: global name &#39;use_file_vars&#39; is not defined</code></pre></li>
+<li><p>Add &ldquo;pyshell&rdquo; extra for auto-codeblock&#39;ing Python interactive shell
+sessions even if they weren&#39;t properly indented by the tab width.</p></li>
+</ul>
+
+<h2>python-markdown2 1.0.1.3</h2>
+
+<ul>
+<li>Make the use of the <code>-*- markdown-extras: ... -*-</code> emacs-style files
+variable to set &ldquo;extras&rdquo; <strong>off</strong> be default. It can be turned on via
+<code>--use-file-vars</code> on the command line and <code>use_file_vars=True</code> via the
+module interface.</li>
+<li>[Issue 3] Drop the code-color extra hack added <em>for</em> issue3 that was
+causing the a unicode error with unicode in a code-colored block,
+<a href="http://code.google.com/p/python-markdown2/issues/detail?id=3#c8">http://code.google.com/p/python-markdown2/issues/detail?id=3#c8</a></li>
+</ul>
+
+<h2>python-markdown2 1.0.1.2</h2>
+
+<ul>
+<li>[Issue 8] Alleviate some of the incompat of the last change by allowing (at
+the Python module level) the usage of <code>safe_mode=True</code> to mean what it used
+to &ndash; i.e. &ldquo;replace&rdquo; safe mode.</li>
+<li>[Issue 8, <strong>incompatible change</strong>] The &ldquo;-s|&ndash;safe&rdquo; command line option and
+the equivalent &ldquo;safe_mode&rdquo; option has changed semantics to be a string
+instead of a boolean. Legal values of the string are &ldquo;replace&rdquo; (the old
+behaviour: literal HTML is replaced with &ldquo;[HTML_REMOVED]&rdquo;) and &ldquo;escape&rdquo;
+(meta chars in literal HTML is escaped).</li>
+<li>[Issue 11] Process markup in footnote definition bodies.</li>
+<li>Add support for <code>-*- markdown-extras: ... -*-</code> emacs-style files variables
+(typically in an XML comment) to set &ldquo;extras&rdquo; for the markdown conversion.</li>
+<li>[Issue 6] Fix problem with footnotes if the reference string had uppercase
+letters.</li>
+</ul>
+
+<h2>python-markdown2 1.0.1.1</h2>
+
+<ul>
+<li>[Issue 3] Fix conversion of unicode strings.</li>
+<li>Make the &ldquo;safe_mode&rdquo; replacement test overridable via subclassing: change
+<code>Markdown.html_removed_text</code>.</li>
+<li>[Issue 2] Fix problems with &ldquo;safe_mode&rdquo; removing generated HTML, instead of
+just raw HTML in the text.</li>
+<li>Add &ldquo;-s|&ndash;safe&rdquo; command-line option to set &ldquo;safe_mode&rdquo; conversion
+boolean. This option is mainly for compat with markdown.py.</li>
+<li><p>Add &ldquo;link-patterns&rdquo; extra: allows one to specify a list of regexes that
+should be automatically made into links. For example, one can define a
+mapping for things like &ldquo;Mozilla Bug 1234&rdquo;:</p>
+
+<pre><code>regex:  mozilla\s+bug\s+(\d+)
+href:   http://bugzilla.mozilla.org/show_bug.cgi?id=\1</code></pre></li>
+</ul>
+
+<p>See <a href="https://github.com/trentm/python-markdown2/wiki/Extras">https://github.com/trentm/python-markdown2/wiki/Extras</a> for details.
+- Add a &ldquo;MarkdownWithExtras&rdquo; class that enables all extras (except
+  &ldquo;code-friendly&rdquo;):</p>
+
+<pre><code>&gt;&gt;&gt; import markdown2
+    &gt;&gt;&gt; converter = markdown2.MarkdownWithExtras()
+    &gt;&gt;&gt; converter.convert(&#39;...TEXT...&#39;)
+    ...HTML...</code></pre>
+
+<ul>
+<li>[Issue 1] Added &ldquo;code-color&rdquo; extra: pygments-based (TODO: link) syntax
+coloring of code blocks. Requires the pygments Python library on sys.path.
+See <a href="https://github.com/trentm/python-markdown2/wiki/Extras">https://github.com/trentm/python-markdown2/wiki/Extras</a> for details.</li>
+<li>[Issue 1] Added &ldquo;footnotes&rdquo; extra: adds support for footnotes syntax. See
+<a href="https://github.com/trentm/python-markdown2/wiki/Extras">https://github.com/trentm/python-markdown2/wiki/Extras</a> for details.</li>
+</ul>
+
+<h2>python-markdown2 1.0.1.0</h2>
+
+<ul>
+<li>Added &ldquo;code-friendly&rdquo; extra: disables the use of leading and trailing <code>_</code>
+and <code>__</code> for emphasis and strong. These can easily get in the way when
+writing docs about source code with variable_list_this and when one is not
+careful about quoting.</li>
+<li>Full basic Markdown syntax.</li>
+</ul>
+
+<p>(Started maintaining this log 15 Oct 2007. At that point there had been no
+releases of python-markdown2.)</p>

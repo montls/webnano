@@ -11,6 +11,6 @@
     "express-partials":"*",
     "mongodb":">=0.9.9",
     "connect-mongo":">=0.1.7",
-    "marked":"*"
+    "log4js":"*"
   }
 }

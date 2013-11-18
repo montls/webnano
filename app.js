@@ -2,25 +2,26 @@
 /**
  * Module dependencies.
  */
-
+var fs = require('fs');
 var express = require('express');
 var http = require('http');
 var path = require('path');
 var partials = require('express-partials');
 var flash = require('connect-flash');
 var ctrl = require('./routes/ctrl');
+var log4js = require('log4js');
 var MongoStore = require('connect-mongo')(express);
 var settings = require('./settings');
+var app = express(); 
 
-var app = express();
+var f_access_log = fs.createWriteStream('access.log','w');
 
-// all environments
 app.configure(function(){
     app.set('port', process.env.PORT || 3000);
     app.set('views', path.join(__dirname, 'views'));
     app.set('view engine', 'ejs');
     app.use(express.favicon());
-    app.use(express.logger('dev'));
+    app.use(express.logger({stream:f_access_log,format:":remote-addr; :date; :method; :date; :response-time; :url; :status"}));
     app.use(express.json());
     app.use(express.urlencoded());
     app.use(express.methodOverride());
@@ -48,10 +49,12 @@ app.configure(function(){
         res.locals.error = req.flash('error').toString();
         res.locals.success = req.flash('success').toString();
         next();
-    });       
+    });
 });
 
+// router
 ctrl(app);
+
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());

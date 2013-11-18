@@ -1,0 +1,52 @@
+<div class="section-container">
+    <div class="marking-header">
+        <h1>提交Markdown文件</h1>
+    </div>
+    <form class="form" method="post" enctype="multipart/form-data">
+        <div class="input-unit">
+            <label>文件名</label>
+            <input class="input" name="file_name" id="file-target" placeholder="请提交不含HTML和Jabascript的Mardkown文档">
+            <div class="input-file">
+                <button type="button" class="btn-blue" id="upload_btn">上传</button>
+                <input type="file" name="file" id="file-source">
+            </div>
+        </div>
+        <div class="input-unit">
+            <label>标题</label>
+            <input type="text" class="input" name="md_title" placeholder="默认标题为提交文件的文件名">
+        </div>  
+        <div class="input-unit">
+            <label>文章分类</label>
+            <input type="text" class="input" name="md_catalog" placeholder="默认分类为未分类文章">
+        </div>        
+        <div class="input-unit">
+            <label>编译选项</label>
+            <div class="checkbox-container">
+                <input type="checkbox" name="md_options" value="1">选项一
+                <input type="checkbox" name="md_options" value="2">选项二
+                <input type="checkbox" name="md_options" value="3">选项三
+                <input type="checkbox" name="md_options" value="4">选项四
+            </div>
+        </div>        
+        
+        <div class="input-unit">
+            <label>添加标签</label>
+            <input type="text" class="input-label" name="md_label" id="label-add-input">
+            <button type="button" class="btn-blue" id="label-add">+</button>
+        </div>
+        <div class="input-unit">
+            <% if(success.length > 0){%>
+                <div class="info-success"><%= success %></div>
+            <% } %>
+            <% if(error.length > 0){ %>
+                <div class="info-error"><%= error %></div>
+            <% } %>
+            </div>
+        <hr>
+        <input type="text" class="hide" id="upload-label" name="label_dir">
+        <div id="upload-submit">
+            <button type="button" class="btn-red">提交</button>
+        </div>
+    </form>
+    <script src="/javascripts/upfile.js"></script>
+</div>

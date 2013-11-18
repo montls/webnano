@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= title %></title>
+        <link rel="stylesheet" href="/stylesheets/webnano.css" >
+        <link rel="stylesheet" href="/stylesheets/bs.css" >
+        <link rel="stylesheet" href="/stylesheets/admin.css" >
+    </head>
+    <body id="body">
+        
+        <nav>
+            
+                <div class="navbar-brand">
+                    <a  href="/admin/index"> Web Nano Admin</a>
+                    <ul class="navbar-ul">
+                        <li class="active"><a href="/admin/user">用户管理</a></li>
+                        <li><a href='/admin/articles'>文章管理</a></li>
+                        <li><a href='/admin/dbs'>数据库信息</a></li>
+                        <li><a href='/'>登出</a></li>                       
+                    </ul>
+                </div>
+                
+        </nav>
+        
+        <div id="admin-container" class="admin-container">
+			<%- body %>
+        </div>
+        <footer id="footer">
+            <p>By <a href="#"> &copy; montls' admin</a> 2013</p>
+        </footer>
+    </body>
+    <script src="/javascripts/jquery-1.10.2.min.js"></script>       
+</html>

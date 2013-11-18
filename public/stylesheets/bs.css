@@ -843,13 +843,6 @@ button.close {
     vertical-align:top;
     text-align:center;
 }
-.fixed-nav-unit a{
-    font-size:16px;
-    opacity:.8;
-}
-.fixed-nav-unit a:hover{
-    opacity:1;
-}
 .fixed-nav-left ul{
     display:block;
     list-style:none;
@@ -947,3 +940,4 @@ button.close {
 .label-danger[href]:focus {
   background-color: #c9302c;
 }
+

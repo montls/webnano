@@ -1,0 +1,26 @@
+<div class="section-container">
+    <div class = "section">
+        <h1><%= header %></h1>
+        <form method="post">
+            <table class="table user-table">
+                <tr>
+                    <td>用户名</td>
+                    <td>注册时间</td>
+                    <td>权限</td>
+                    <td>操作</td>
+                </tr>
+                <% for(var i=0;i<length;i++){ %>
+                <tr>
+                    <td><%= user_list[i].name %></td>
+                    <td><%= user_list[i].time %></td>
+                    <td><%= user_list[i].power %></td>
+                    <td>
+                        <a href="/adminopt?q_user=<%= user_list[i].name %>&opt=power_p&power=<%= user_list[i].power%>">加权限</a>
+                        <a href="/adminopt?q_user=<%= user_list[i].name %>&opt=power_m&power=<%= user_list[i].power%>">减权限</a>
+                    </td>
+                </tr>
+                <% } %>
+            </table>
+       	</form>
+    </div>
+</div>

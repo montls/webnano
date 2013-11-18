@@ -1,4 +1,5 @@
 var db = require('../db');
+var settings = require('../../settings');
 
 function User(user){
     this.name = user.name;
@@ -7,9 +8,15 @@ function User(user){
 module.exports = User;
 
 User.prototype.save = function save(callback){
+    var get_power = settings.power.read;
+    if(this.name == settings.admin_master.cxh || this.name == settings.admin_master.hx){
+        get_power = settings.power.admin;
+    }
     var user={
         name:this.name,
-        password:this.password
+        password:this.password,
+        power:get_power,
+        time:new Date()
     };
 
     db.collection('users', function(err, collection){
@@ -34,9 +41,7 @@ User.get = function get(username,callback){
                 callback(err,doc);
             }else{
                 callback(err,null);
-                console.log(1);
             }
         });
     });
 }
-            

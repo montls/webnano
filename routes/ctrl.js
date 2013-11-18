@@ -12,9 +12,10 @@ module.exports = function(app){
         models.index_articles(req,res);
     });
     
+    /* 用户信息路由 */
     app.get('/reg', check.checkNotLogin);
     app.get('/reg', function(req, res){
-        res.render('reg',{
+        res.render('user/reg',{
             title:'注册'
         });
     });
@@ -24,7 +25,7 @@ module.exports = function(app){
     
     app.get('/login',check.checkNotLogin);
     app.get('/login',function(req, res){
-        res.render('login',{
+        res.render('user/login',{
             title:'登录'
         });
     });
@@ -40,17 +41,17 @@ module.exports = function(app){
     
     app.get('/post',check.checkLogin);
     app.get('/post',function(req,res){
-        res.render('post',{
+        res.render('articles/post',{
             title:'提交文档'
         });
     });
-    app.post('/post',check.checkLogin);
+    app.post('/post',check.checkManagerLogin);
     app.post('/post',function(req,res){
         models.post_article(req,res);
     });
     
     app.get('/404',function(req,res){
-        res.render('404',{
+        res.render('error/404',{
             title:'Not Found'
         });
     });
@@ -59,21 +60,28 @@ module.exports = function(app){
         models.get_article(req.params.post_id,req,res);
     });
     
-    app.get('/admin',check.checkLogin);
-    app.get('/admin',function(req,res){
+    /* 后台路由 */
+    app.get('/admin/:info',check.checkLogin);
+    app.get('/admin/:info',function(req,res){
         models.get_admin(req,res);
     });
-    app.post('/admin',check.checkLogin);
-    app.post('/admin',function(req,res){
+    app.post('/admin/:info',check.checkLogin);
+    app.post('/admin/:info',function(req,res){
         models.post_admin(req,res);
     });
-    app.put('/admin',check.checkLogin);
-    app.put('/admin',function(req,res){
-        models.put_admin(req,res);
+    
+    app.get('/adminopt',check.checkManagerLogin);
+    app.get('/adminopt',function(req,res){
+        models.opt_admin(req,res);
     });
-    app.del('/admin',check.checkLogin);
-    app.del('/admin',function(req,res){
-        models.del_admin(req,res);
+    
+ 	app.get('/postmd',function(req,res){
+        res.render('articles/post_md',{
+            title:'上传Markdown文件',
+        });
+    });
+    app.post('/postmd',function(req,res){
+        models.post_md(req,res);
     });
     
     app.get('/document',function(req,res){

@@ -21,27 +21,19 @@ h1 {
 h2 {
     display: block;
     font-size: 1.5em;
-    -webkit-margin-before: 0.83em;
-    -webkit-margin-after: 0.83em;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
+    margin:0.7em 0 .4em 0;
     font-weight: bold;
+    
 }
 h3 {
     display: block;
     font-size: 1.17em;
-    -webkit-margin-before: 1em;
-    -webkit-margin-after: 1em;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
+    margin:1em 0 .8em 0;
     font-weight: bold;
 }
 h4 {
     display: block;
-    -webkit-margin-before: 1.33em;
-    -webkit-margin-after: 1.33em;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
+    margin: 1.4em 0 1em 0;
     font-weight: bold;
 }
 .marketing-header {
@@ -86,6 +78,9 @@ ul,ol{
 }
 .btn{
     margin:1em 0;
+}
+.hide{
+    display:none;
 }
 /************ file::layout start**********/
 #body{
@@ -225,34 +220,32 @@ footer a{
 /************ type::document end**********/
 
 /************ type::form start********/
-form{
-}
 .form{
     border-top:1px solid #ccc;
-    float:left;
     font-size:18px;
-    text-align:right;
-}
-.form-info{
-    border-left:1px solid red;
-    padding-left:.5em;
-    width:370px;
-    margin:3em 0 1em 3em;
-    float:left;
-    font-size:14px;
-    text-align:left;
+    width:100%;
 }
 .input-unit{
     margin:1.5em 0;
+}
+.input-unit > label{
+    text-align:right;
+    display:inline-block;
+    width:4em;
 }
 .input{
     margin-left:1em;
     padding-left:.5em;
     height:2em;
-    width:300px;
+    width:60%;
     border:1px solid #ccc;
 }
-
+.input-fake{
+    display:inline-block;
+    margin-left:1em;
+    width:60%;
+    text-align:right;
+}
 button{
     border:1px solid #999;
     background-color:white;
@@ -264,7 +257,8 @@ button:hover{
 .input-unit > button{
     font-size:18px;
 }
-.btn-red{
+
+.btn-red{ 
     color:white;
     border:1px solid red;
     background-color:red;
@@ -278,11 +272,11 @@ button:hover{
     font-weight:400;
     opacity:0.8;
 }
+
 .info-success{
     width:100%;
     color:green;
     font-size:18px;
-    border:1px solid #ccc;
     text-align:center;
 }
 .info-error{
@@ -294,14 +288,18 @@ button:hover{
     font-weight:500;
     opacity:0.8;
 }
-
+.checkbox-container{
+    margin-left:1em;
+    display:inline-block;
+    width:60%;
+}
 /**** 上传文件css 修改 ****/
 .input-file{
-    float:left;
-    margin-left:5em;
-    text-align:left;
-    position:absolute;
+    text-align:right;
+    display:inline-block;
+    position:relative;
     height:2em;
+    width:4em;
 }
 .input-file  input{
     opacity:0;
@@ -317,7 +315,28 @@ button:hover{
     font-size:18px;
     z-index:1;
 }
-
+.input-file input{
+    height:2em;
+}
+.input-label{
+    margin-left:1em;
+    padding-left:.5em;
+    height:2em;
+    width:10em;
+    border:1px solid #ccc;
+}
+.label-upload{
+    display:inline-block;
+    margin:4px;
+    padding:4px 6px;
+    color:white;
+   	background-color:#5BC0DE;
+    border:none;
+}
+#upload-submit{
+    text-align:right;
+    margin:1em;
+}
 /************ type::form end**********/
 
 /************ type::markdown start********/

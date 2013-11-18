@@ -1,0 +1,30 @@
+<div class="section-container">
+    <div class = "section">
+        <h1><%= header %></h1>
+        <form method="post">
+            <table class="table user-table">
+                <tr>
+                    <td>文章名</td>
+                    <td>文章编号</td>
+            		<td>发布人</td>
+                    <td>发布时间</td>
+                    <td>状态</td>
+                    <td>操作</td>
+                </tr>
+                <% for(var i=0;i<length;i++){ %>
+                <tr>
+                    <td><%= doc_list[i].title %></td>
+                    <td><%= doc_list[i].postId %></td>
+                    <td><%= doc_list[i].user %></td>
+                    <td><%= doc_list[i].time %></td>
+                    <td><%= doc_list[i].article_state %></td>
+                    <td>
+						<a href="/adminopt?q_postId=<%= doc_list[i].postId %>&opt=article_p&state=<%= doc_list[i].article_state %>">加权限</a>
+                        <a href="/adminopt?q_postId=<%= doc_list[i].postId %>&opt=article_m&state=<%= doc_list[i].article_state %>">减权限</a>
+                    </td>
+                </tr>
+                <% } %>
+            </table>
+       	</form>
+    </div>
+</div>

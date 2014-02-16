@@ -1,10 +1,10 @@
-var Post = require('./Post');
+var Document = require('./Document');
 
 module.exports = function(id,req,res){
     var query = {
         postId:parseInt(id)
     };
-    Post.getOne("articles",query,function(err,doc){
+    Document.getOne("articles",query,function(err,doc){
         if(err) throw err;
         if(doc){
             var localtime = doc.time;

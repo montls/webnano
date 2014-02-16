@@ -54,7 +54,7 @@ exports.findAndModify = function(collname,query,sort,update_doc,callback){
     
     db.collection(collname,function(err,collection){
         collection.findAndModify(query,sort,update_doc,{safe:true},function(err,doc){
-            console.log(doc);
+            //console.log(doc);
             if(err) return callback(err);
             callback(null,doc);
         });

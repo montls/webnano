@@ -11,28 +11,23 @@ var flash = require('connect-flash');
 var ctrl = require('./routes/ctrl');
 var log4js = require('log4js');
 var MongoStore = require('connect-mongo')(express);
-var settings = require('./settings');
+var st = require('./settings');
 var app = express(); 
 
 var f_access_log = fs.createWriteStream('access.log','w');
 
 app.configure(function(){
-    app.set('port', process.env.PORT || 3000);
+    app.set('port', process.env.PORT || st.port);
     app.set('views', path.join(__dirname, 'views'));
     app.set('view engine', 'ejs');
     app.use(express.favicon());
-    app.use(express.logger({stream:f_access_log,format:":remote-addr; :date; :method; :date; :response-time; :url; :status"}));
+    app.use(express.logger({/*stream:f_access_log,*/format:":remote-addr; :date; :method; :date; :response-time; :url; :status"}));
     app.use(express.json());
     app.use(express.urlencoded());
     app.use(express.methodOverride());
     app.use(express.bodyParser({uploadDir:'./upload'}));
     app.use(express.cookieParser());
-    app.use(express.session({
-        secret:settings.cookieSecret,
-        store: new MongoStore({
-            db:settings.db
-        })
-    }));
+    app.use(express.session({ secret:st.cookieSecret }));
     app.use(flash());
     app.use(partials());
     app.use(express.static(path.join(__dirname, 'public')));
@@ -60,13 +55,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 
 }
-if (0) {
-    http.createServer(app).listen(8789,"192.168.1.192", function(){
-        console.log('Express server listening on port ' + 8789);
-    });
-}
-else{
-    http.createServer(app).listen(app.get('port'), function(){
-        console.log('Express server listening on port ' + app.get('port'));
-    });
-}
+
+http.createServer(app).listen(app.get('port'), function(){
+    console.log('Express server listening on port ' + app.get('port'));
+});

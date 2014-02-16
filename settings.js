@@ -3,7 +3,7 @@ module.exports = {
 	db:"webnano",
 	host:"127.0.0.1",
     admin_master:{
-        cxh:'cxh_admin_master',
+        cxh:'cxh',
         hx:'hx_admin_master'
     },
     power:{
@@ -12,5 +12,7 @@ module.exports = {
         post:2,
         manager:3,
         admin:11
-    }
+    },
+    port:21305,
+    rootDir:'/home/montls/documents/nodejs/webnano/'
 }

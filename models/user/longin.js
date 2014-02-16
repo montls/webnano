@@ -14,6 +14,7 @@ module.exports = function(req,res){
             return res.redirect('/login');
         }
         req.session.user = user.name;
+        req.session.info = user;
         req.flash('success','登录成功，请自行跳转！');
         res.redirect('/');
     });

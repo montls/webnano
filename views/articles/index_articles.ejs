@@ -1,4 +1,7 @@
-<div class='section-container'>
+<div id='left-side-container'>
+    
+</div>
+<div class='section-container' id='article-container'>
     <div class="marketing-header">
         <h1><%= title %></h1>
         <div class="lead">
@@ -11,12 +14,11 @@
         <h2><a href="/article/<%= post_list[each].postId %>"> <%= post_list[each].title %> </a></h2>
         
         <div class="label-container">
-            <span class="label label-default">Default</span>
-			<span class="label label-default">Primary</span>
-			<span class="label label-default">Success</span>
-			<span class="label label-info">Info</span>
-			<span class="label label-warning">Warning</span>
-			<span class="label label-danger">Danger</span>
+            <% for(each_label in post_list[each].label ){ %>
+                <% if(post_list[each].label[each_label]){ %>
+                <span class="label label-default"><%= post_list[each].label[each_label] %></span>
+                <% } %>
+            <% } %>
         </div>
         <div class="small-container">
             <small>
@@ -27,10 +29,12 @@
     </div>
     <% } %>
     
+<!--
     <div class="section-footer">
         <ul class="pagination" id="index_articles">
-            <%= n_sum %>
+            //<%= n_sum %>
         </ul>
     </div>
+-->
 </div>
 <script src="/javascripts/index_articles.js"></script>

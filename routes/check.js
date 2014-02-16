@@ -28,10 +28,10 @@ exports.checkManagerLogin = function(req,res,next){
             req.flash('error','未知错误，请联系管理员');
             res.redirect('/post');
         }
-        else if(user_doc.power < settings.power.manager){
+        else if((typeof user_doc.power != 'undefined') && user_doc.power < settings.power.manager){
             
             req.flash('error','您没有足够权限执行操作，请联系管理员');
-            res.redirect('/post');
+            res.redirect('/');
         }
         else{
             next();

@@ -1,3 +1,5 @@
+//管理员专用上传API
+
 var Post = require('./Post');
 var fs = require('fs');
 

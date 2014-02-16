@@ -1,7 +1,8 @@
 window.onload = function(){
     time_transplate();
-    pagination();
-    console.log(1);
+    //pagination();
+    get_local_info();
+    listen_scroll_change();
 }
 function time_transplate(){
     function $ms(i){
@@ -14,7 +15,7 @@ function time_transplate(){
         m_d = n_t.getDay(),
         m_h = n_t.getHours(),
         m_mi = n_t.getMinutes();
-    
+    console.log(1);
     for(var e=0;e<t_l.length;e++){
         var t = new Date(t_l[e].innerText);
         var tm_y = t.getFullYear(),
@@ -51,6 +52,40 @@ function time_transplate(){
         }
     }                
 }
+
+function get_local_info(){
+    var lsc = $('#left-side-container');
+    //console.log(''+document.body.clientHeight-80+'px');
+    var lsc_css = {
+			'height':''+$(document).height()-80+'px',
+            'background-color':'white',
+            'float':'left',
+            'overflow':'auto',
+            'width':'22%',
+    };
+    lsc.css(lsc_css);
+    
+    var ct = $('#container');
+    var ct_css = {
+        'width':'96%',
+        'margin':'0 auto 0 0',
+    }
+    ct.css(ct_css);
+}
+function listen_scroll_event(){
+    //while循环对进度条进行监控
+    //如果true向服务器请求下一页
+    
+//    var oldSite=new Object();
+//            oldSite.left=$("#floatRight").offset().left;
+//            oldSite.top=$("#floatRight").offset().top;
+//            $(window.document).scroll(function () {
+//                var scrolltop = $(document).scrollTop();
+//                var top=oldSite.top+scrolltop;
+//                $("#floatRight").offset({ top: top });
+//            });
+}
+/* 分页
 function pagination(){
     var e = document.getElementById("index_articles");
     var q = e.innerText.split('.');
@@ -81,3 +116,4 @@ function f1(front,sum,current){
     inner += '<li><a href="/articles/' +(current)+'">&raquo;</a></li>';
     return inner;
 }
+*/

@@ -27,14 +27,16 @@ module.exports = function(req,res){
         var query = {postId:parseInt(req.query.q_postId)}; //req 全为字符串 ！！！！！！！！！！！！ funk js
         var sort = [['time',1]];
         if(req.query.state < 10){
-            var update_doc = {$inc:{article_state:1}};
-            console.log(update_doc);
-            Admin.findAndModify('articles',query,sort,update_doc,function(err,doc){
-                if(err) return console.log(err);
-            });
-            Admin.findAndModify('article_infos',query,sort,update_doc,function(err,doc){
-                if(err) return console.log(err);
-            });
+            if(req.session.info.power >= 3){
+                var update_doc = {$inc:{article_state:1}};
+                console.log(update_doc);
+                Admin.findAndModify('articles',query,sort,update_doc,function(err,doc){
+                    if(err) return console.log(err);
+                });
+                Admin.findAndModify('article_infos',query,sort,update_doc,function(err,doc){
+                    if(err) return console.log(err);
+                });
+            }
         }
         res.redirect('/admin/articles');    
     }
@@ -42,13 +44,15 @@ module.exports = function(req,res){
         var query = {postId:parseInt(req.query.q_postId)};
         var sort = [['time',1]];
         if(req.query.state > 1){
-            var update_doc = {$inc:{article_state:-1}};
-            Admin.findAndModify('articles',query,sort,update_doc,function(err,doc){
-                if(err) return console.log(err);
-            });
-            Admin.findAndModify('article_infos',query,sort,update_doc,function(err,doc){
-                if(err) return console.log(err);
-            });
+            if(req.session.info.power >= 3){
+                var update_doc = {$inc:{article_state:-1}};
+                Admin.findAndModify('articles',query,sort,update_doc,function(err,doc){
+                    if(err) return console.log(err);
+                });
+                Admin.findAndModify('article_infos',query,sort,update_doc,function(err,doc){
+                    if(err) return console.log(err);
+                });
+            }
         }
         res.redirect('/admin/articles');      
     }

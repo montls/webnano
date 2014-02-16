@@ -33,12 +33,12 @@ $(document).ready(function(){
     });
     $('#upload-submit').mousedown(function(){
         var labels = $('.label-upload');
-        var label_dir = "";
+        var label_str = "";
         var l_length = labels.length;
         for(var i=0;i<l_length;i++){
-            label_dir += $(labels[i]).text()+";";
+            label_str += $(labels[i]).text()+";";
         }
-        $('#upload-label').val(label_dir);
+        $('#upload-label').val(label_str);
         $('form').trigger('submit');
     });
 });

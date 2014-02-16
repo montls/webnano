@@ -52,8 +52,6 @@
                 <td>集合数据容量</td>
                 <td>集合存储容量</td>
                 <td>索引数目</td>
-                <td>系统标识</td>
-                <td>用户标识</td>
             </tr>
             <% for(var i=0;i<collname_list.length;i++){ %>
                 <tr>
@@ -63,8 +61,6 @@
                     <td><%= Math.round((colls_info[i].size/1024)*100)/100 %> Mb</td>
                     <td><%= Math.floor(colls_info[i].storageSize/1024) %> Mb</td>
                     <td><%= colls_info[i].nindexes %></td>
-                    <td><%= colls_info[i].systemFlags %></td>
-                    <td><%= colls_info[i].userFlags %></td>
                 </tr>
             <% } %>
         </table>

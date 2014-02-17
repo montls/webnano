@@ -14,26 +14,26 @@ body {
 
 h1 {
     display: block;
-    font-size: 2em;
-    margin: 0.67em;
+    font-size: 3em;
+    margin: 0.67em 0;
     font-weight: bold;
 }
 h2 {
     display: block;
-    font-size: 1.5em;
+    font-size: 2em;
     margin:0.7em 0 .4em 0;
     font-weight: bold;
     
 }
 h3 {
     display: block;
-    font-size: 1.17em;
+    font-size: 1.4em;
     margin:1em 0 .8em 0;
     font-weight: bold;
 }
 h4 {
     display: block;
-    margin: 1.4em 0 1em 0;
+    margin: 1.2em 0 .2em 0;
     font-weight: bold;
 }
 .marketing-header {
@@ -53,25 +53,16 @@ h4 {
 code {
     background-color: #f8fff8;
     color: #060;
-    padding: 1px 3px;
+/*    padding: 1px 3px;*/
     font-size: .9em;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
 }
 
-pre, code {
-    font-family: 'Envy Code R','Droid Sans Mono','Bitstream Vera Sans Mono','DejaVu Sans Mono',Inconsolata,Consolas,monospace;
-    padding: .1em 1em;
-    overflow-x: auto;
-    color: inherit;
-    font-size: 1em;
-}
-pre{
-    color:#060;
+pre, tt, code {
+    font-size: 14px;
+    line-height: 1.5438em;
+    font-family: Monaco, Consolas, "Lucida Console", monospace;
+    margin: 0;
+    padding: 0;
 }
 ul,ol{
     list-style-position:inside;
@@ -176,7 +167,6 @@ footer a{
 /************ type::document start********/
 .container{
     width:70%;
-    min-height:688px; /* test DEL */
     margin:0 auto;
     background-color:white;
     overflow:auto;
@@ -195,12 +185,12 @@ footer a{
     line-height:1.5;
 }
 .section{
-    margin:3em 0;
+    margin:1.5em 0;
 }
-.section > h2{
+.section > h3{
     margin:0.2em 0;
 }
-.section > h2 > a{
+.section > h3 > a{
     text-decoration:none;
 }
 .small-container{
@@ -340,20 +330,22 @@ button:hover{
 /************ type::form end**********/
 
 /************ type::markdown start********/
-
-.highlight,
-.markdown-container pre{
-    border:1px solid #eee;
-    margin:1em 0;
-    background-color:#F8FFF8;
+.markdown-container > pre{
+    padding: 1em 1.6em 1em 1.2em;
+    vertical-align: top;
+    background: #f8fff8;
+    border: 1px solid #f8f8f8;
+    border-width: 1px 1px 1px 6px;
+    margin: 0.5em 0 1.1em;
+    overflow-x: auto;
 }
-.markdown-container pre code{
-    background-color:#F8FFF8;
-}
-.markdown-container .highlight pre{
-    border:none;
-    margin:0;
+.markdown-container > pre > code{
+    display:block;
 }
 .markdown-container table{
+}
+.markdown-container > h1 ,
+.markdown-container > h2 {
+    border-bottom:1px solid #ccc;
 }
 /************ type::markdown end**********/

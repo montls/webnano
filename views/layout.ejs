@@ -4,7 +4,20 @@
         <title><%= title %></title>
         <link rel="stylesheet" href="/stylesheets/webnano.css" >
         <link rel="stylesheet" href="/stylesheets/bs.css" >
-         <script src="/javascripts/jquery-1.10.2.min.js"></script> 
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script type="application/javascript">
+            function change_layout(){
+                var mh = window.innerHeight - 80;
+                var mc = {
+                    "min-height":mh+"px"
+                }
+                $("#container").css(mc);
+            }
+            
+            $(window).load(change_layout);
+            $(window).resize(change_layout);
+            
+        </script>
     </head>
     <body id="body">
         

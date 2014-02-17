@@ -14,5 +14,5 @@ module.exports = {
         admin:11
     },
     port:21305,
-    rootDir:'/home/montls/documents/nodejs/webnano/'
+    rootDir:'R:\\webnano\\'
 }

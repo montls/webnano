@@ -81,7 +81,7 @@ module.exports = function(app){
         });
     });
     app.post('/postmd',function(req,res){
-        models.post_md(req,res);
+        models.post_marked(req,res);
     });
     
     app.get('/document',function(req,res){

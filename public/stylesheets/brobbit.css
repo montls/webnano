@@ -1,0 +1,24 @@
+body {
+    padding-top: 50px;
+}
+.starter-template {
+    padding: 40px 15px;
+    text-align: center;
+}
+.starter-template li{
+    list-style-type: none;
+}
+.br-navbar{
+    background:#eee;
+    border-color:#FF9224;
+}
+.br-navbar .navbar-nav li>a:focus,
+.br-navbar .navbar-nav li>a:hover,
+.br-navbar .navbar-brand:focus,
+.br-navbar .navbar-brand:hover{
+    background-color:#FF9224;
+    color:white;
+}
+.container{
+    min-width: 750px;
+}

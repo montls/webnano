@@ -1,11 +1,39 @@
-<div class="section-container">
-    <div class="marketing-header" style="text-align:center">
-        <h1><%= title %></h1>
-        <div class="lead">
-            <p>测试文章</p>
-        </div>
+<div class="actl-head-container">
+    <h1 class="inline-block"><%= title %></h1>
+    <% for(each_label in post_label ){ %>
+        <span><%= post_label[each_label] %></span>
+    <% } %>
+    <div class="actl-info-container">
+        <span>
+            作者：<%= author %>
+        </span>
+        <span>
+            类型：<%= catalog %>
+        </span>
+        <span>
+            时间：<%= time %>
+        </span>
     </div>
-    <hr>
-    <link rel="stylesheet" href="/stylesheets/markdown_code.css" >
-    <div class="markdown-container"><%- content %></div>
 </div>
+<hr>
+<link rel="stylesheet" href="/stylesheets/markdown_code.css" >
+<div class="markdown-container"><%- content %></div>
+<style type="text/css">
+.actl-head-container {
+    margin-bottom: 1em;
+}
+.actl-head-container h1 {
+    margin:10px .5em 0 0;
+    font-size: 36px;
+    font-weight: normal;
+    color:#78a355;
+}
+.actl-head-container span{
+    font-size:.8em;
+    margin: 0 2em 0 0;
+    color: #777;
+}
+.actl-head-container > span{
+    color:#78a355;
+}
+</style>

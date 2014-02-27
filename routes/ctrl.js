@@ -8,15 +8,13 @@ module.exports = function(app){
         });
     });
     
-    app.get('/articles/:id',function(req, res){
-        models.index_articles(req,res);
-    });
-    
     /* 用户信息路由 */
     app.get('/reg', check.checkNotLogin);
     app.get('/reg', function(req, res){
         res.render('user/reg',{
-            title:'注册'
+            title:'注册',
+            reg_error: req.flash("reg_error"),
+            reg_success: req.flash("reg_success")
         });
     });
     app.post('/reg', function(req, res){
@@ -26,7 +24,8 @@ module.exports = function(app){
     app.get('/login',check.checkNotLogin);
     app.get('/login',function(req, res){
         res.render('user/login',{
-            title:'登录'
+            title:'登录',
+            login_error: req.flash("login_error")
         });
     });
     app.post('/login',function(req,res){
@@ -39,25 +38,11 @@ module.exports = function(app){
         res.redirect('/');
     });
     
-    app.get('/post',check.checkLogin);
-    app.get('/post',function(req,res){
-        res.render('articles/post',{
-            title:'提交文档'
-        });
-    });
-    app.post('/post',check.checkManagerLogin);
-    app.post('/post',function(req,res){
-        models.post_article(req,res);
-    });
-    
-    app.get('/404',function(req,res){
-        res.render('error/404',{
-            title:'Not Found'
-        });
-    });
-    
     app.get('/article/:post_id',function(req,res){
         models.get_article(req.params.post_id,req,res);
+    });
+    app.get('/articles/:id',function(req, res){
+        models.index_articles(req,res);
     });
     
     /* 后台路由 */
@@ -75,17 +60,29 @@ module.exports = function(app){
         models.opt_admin(req,res);
     });
     
+    //提交路由
+    app.get('/postmd',check.checkManagerLogin);
  	app.get('/postmd',function(req,res){
         res.render('articles/post_md',{
             title:'上传Markdown文件',
+            md_error:req.flash("md_error"), 
+            md_success:req.flash("md_success")
         });
     });
+    app.post('/postmd',check.checkManagerLogin);
     app.post('/postmd',function(req,res){
-        models.post_marked(req,res);
+        models.post_marked(req,res)
     });
     
     app.get('/document',function(req,res){
         models.get_docuemt(req,res);
+    });
+    
+    //辅助页面
+    app.get('/404',function(req,res){
+        res.render('error/404',{
+            title:'Not Found'
+        });
     });
   
 };

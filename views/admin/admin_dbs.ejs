@@ -1,68 +1,57 @@
-<div class="section-container">
-    <div class="section">
-        <h1><%= header %></h1>
-    </div>
-    <div class="section">
-        <h2>Mongodb基本信息</h2>
-        <table class="table">
-            <tr>
-                <td>数据库版本</td>
-                <td>数据库位数</td>
-                <td>是否开启调试模式</td>
-            </tr>
-            <tr>
-                <td><%= db_info.version %></td>
-                <td><%= db_info.bits %></td>
-                <td><%= db_info.debug %></td>
-            </tr>
-        </table>
-    </div>
-    <div class="section">
-        <h2>Mongodb数据库状态</h2>
-        <table class="table">
-            <tr>
-                <td>数据库名称</td>
-                <td>集合数</td>
-                <td>对象总数</td>
-                <td>平均对象大小</td>
-                <td>数据大小</td>
-                <td>储存文件容量</td>
-                <td>索引数</td>
-                <td>索引存盘容量</td>
-            </tr>
-            <tr>
-                <td><%= db_status.db %></td>
-                <td><%= db_status.collections %></td>
-                <td><%= db_status.objects %></td>
-                <td><%= Math.floor(db_status.avgObjSize) %> Byte</td>
-                <td><%= Math.floor(db_status.dataSize/1024) %> Mb</td>
-                <td><%= Math.floor(db_status.storageSize/1024) %> Mb</td>
-                <td><%= db_status.indexes %></td>
-                <td><%= Math.floor(db_status.indexSize/1024) %> Mb</td>
-            </tr>
-        </table>
-    </div>
-    <div class="section">
-        <h2>集合信息</h2>
-        <table class="table">
-            <tr>
-                <td>集合名称</td>
-                <td>文档总量</td>
-                <td>平均文档大小</td>
-                <td>集合数据容量</td>
-                <td>集合存储容量</td>
-                <td>索引数目</td>
-            </tr>
-            <% for(var i=0;i<collname_list.length;i++){ %>
-                <tr>
-                    <td><%= collname_list[i] %></td>
-                    <td><%= colls_info[i].count %></td>
-                    <td><%= Math.floor(colls_info[i].avgObjSize) %> Byte</td>
-                    <td><%= Math.round((colls_info[i].size/1024)*100)/100 %> Mb</td>
-                    <td><%= Math.floor(colls_info[i].storageSize/1024) %> Mb</td>
-                    <td><%= colls_info[i].nindexes %></td>
-                </tr>
-            <% } %>
-        </table>
-    </div>
-</div>
+<h3>Mongodb基本信息</h3>
+<table class="table table-hover">
+    <tr>
+        <td>数据库版本</td>
+        <td>数据库位数</td>
+        <td>是否开启调试模式</td>
+    </tr>
+    <tr>
+        <td><%= db_info.version %></td>
+        <td><%= db_info.bits %></td>
+        <td><%= db_info.debug %></td>
+    </tr>
+</table>
+<h3>Mongodb数据库状态</h3>
+<table class="table table-hover">
+    <tr>
+        <td>数据库名称</td>
+        <td>集合数</td>
+        <td>对象总数</td>
+        <td>平均对象大小</td>
+        <td>数据大小</td>
+        <td>储存文件容量</td>
+        <td>索引数</td>
+        <td>索引存盘容量</td>
+    </tr>
+    <tr>
+        <td><%= db_status.db %></td>
+        <td><%= db_status.collections %></td>
+        <td><%= db_status.objects %></td>
+        <td><%= Math.floor(db_status.avgObjSize) %> Byte</td>
+        <td><%= Math.floor(db_status.dataSize/1024) %> Mb</td>
+        <td><%= Math.floor(db_status.storageSize/1024) %> Mb</td>
+        <td><%= db_status.indexes %></td>
+        <td><%= Math.floor(db_status.indexSize/1024) %> Mb</td>
+    </tr>
+</table>
+<h3>集合信息</h3>
+<table class="table table-hover">
+    <tr>
+        <td>集合名称</td>
+        <td>文档总量</td>
+        <td>平均文档大小</td>
+        <td>集合数据容量</td>
+        <td>集合存储容量</td>
+        <td>索引数目</td>
+    </tr>
+    <% for(var i=0;i<collname_list.length;i++){ %>
+        <tr>
+            <td><%= collname_list[i] %></td>
+            <td><%= colls_info[i].count %></td>
+            <td><%= Math.floor(colls_info[i].avgObjSize) %> Byte</td>
+            <td><%= Math.round((colls_info[i].size/1024)*100)/100 %> Mb</td>
+            <td><%= Math.floor(colls_info[i].storageSize/1024) %> Mb</td>
+            <td><%= colls_info[i].nindexes %></td>
+        </tr>
+    <% } %>
+</table>

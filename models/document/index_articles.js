@@ -9,7 +9,7 @@ module.exports = function(req,res){
     });
     Document.get("article_infos",{postId:{$gte:(q_id-1)*10}},function(err,cursor){
         cursor.limit(_each_page_count).sort({time:-1}).toArray(function(err,docs){
-            res.render("articles/index_articles",{
+            res.render("articles/index_post",{
                 title:'文章',
                 post_list:docs,
                 n_sum:''+q_id+'.'+Math.ceil((req.session._q_count)/10),

@@ -10,11 +10,11 @@ module.exports = function(req,res){
         //post 文件和标题
         var currentUser = req.session.user;
     	if(req.files.file.originalFilename == ""){
-       	 	req.flash('error','上传文件不能为空');
-//            delete req.session.label_dir;
+       	 	req.flash("md_error", "上传文件名不能为空");
         	return res.redirect('/postmd');
     	}
         Post.count('article_infos',{},function(err,n){
+            if(err) return console.log(err);
         	req.session.postId = n;
     	});
         
@@ -29,7 +29,6 @@ module.exports = function(req,res){
         Post.save('post_files',post_file,function(err,file){
             if(err) return console.log(err);
         });
-        // req.body.md_options ??
         
         //设置格式转换信息
         marked.setOptions({
@@ -41,32 +40,28 @@ module.exports = function(req,res){
             sanitize: true,
             smartLists: true,
             smartypants: false,
-            highlight:function(code,lang,callback){
-                require("pygmentize-bundled")({lang:lang,format:'html'},code,
-                        function(err,result){
-                            callback(err,result.toString());
-                        });
-            }
+            highlight: function (code, lang, callback) {
+                    require('pygmentize-bundled')({ lang: lang, format: 'html' }, code, function (err, result) {
+                            callback(err, result.toString());
+                    });
+                    }
         });
 
         var post_filename = st.rootDir+req.files.file.path;
         fs.readFile(post_filename,function(err,data){
             if(err){ 
-                return console.log(err);
-                req.flash('success','上传文件名错误');
+                req.flash("md_error", "上传文件名错误");
                 return res.redirect('/postmd');
             }
             marked(data.toString(),
                 function(err,stdout){
-                    console.log(stdout);
                     if(err){
                         return console.log(err);
-                        req.flash('success','markdown 解析错误');
+                        req.flash('md_error','markdown 解析错误');
                         return res.redirect('/postmd');
                     }
                     ////储存文章信息
                     //分割label_string成list
-                    //console.log('\nDEBUG 1:\n' + util.inspect(req.body,{showHidden:true,depth:null}));
                     var label_list = req.body.label_str.split(';');
                     
                     var update_article_info = {
@@ -95,7 +90,7 @@ module.exports = function(req,res){
                     }
                     Post.save('articles',update_article,function(err){
                         if(err) return console.log(err);
-                        req.flash('success','上传成功');
+                        req.flash("md_success","上传文件成功");
                         return res.redirect('/postmd');
                     });
             });
@@ -104,12 +99,12 @@ module.exports = function(req,res){
     else{
         //什么都没添
         if((typeof req.session.user) == 'undefined'){
-            req.flash('error','权限不足！');
+            req.flash("md_error", "权限不足");
             res.redirect('/postmd');
             return;
         }
         if(!req.file){
-            req.flash('error','请正确填写相关内容！');
+            req.flash("md_error", "未添加文件");
             res.redirect('/postmd');
             return;
         }

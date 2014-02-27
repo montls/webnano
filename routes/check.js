@@ -23,18 +23,11 @@ exports.checkAdminLogin = function(req,res,next){
 };
 
 exports.checkManagerLogin = function(req,res,next){
-    User.get(req.session.user,function(err,user_doc){
-        if(err){
-            req.flash('error','未知错误，请联系管理员');
-            res.redirect('/post');
-        }
-        else if((typeof user_doc.power != 'undefined') && user_doc.power < settings.power.manager){
-            
-            req.flash('error','您没有足够权限执行操作，请联系管理员');
-            res.redirect('/');
-        }
-        else{
-            next();
-        }
-    });
+    if((res.locals.power != 'null') && res.locals.power >= settings.power.manager){
+        next();
+    }
+    else{
+        req.flash('error','您没有足够权限执行操作，请联系管理员');
+        res.redirect('/404');
+    }
 };

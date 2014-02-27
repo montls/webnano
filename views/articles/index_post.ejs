@@ -1,0 +1,107 @@
+
+<div class="br-head-container">
+    <h1 ><%= title %></h1>
+    <p class="lead">这里都有你要找的文章哦！</p>
+</div>
+<hr>
+<div class="brinx-section-container">
+    <div class="brinx-section-left-container">
+        <div class="brinx-section-left">
+            <ul>
+                <li class="brinx-slul-head">精华置顶</li>
+                <% for(each in post_list){ %>
+                <li class="brinx-slul-post">
+                    <a href="/article/<%= post_list[each].postId %>"> <%= post_list[each].title %> </a>
+                    <span class='brinx_author'><%= post_list[each].user %></span>
+                </li>
+                <% } %>
+                <li class="brinx-slut-tail"></li>
+            </ul>
+            <ul>
+                <li class="brinx-slul-head">第一小组</li>
+                <li class="brinx-slul-post"><a>《看不见的厨受到惩罚房》</a></li>
+                <li class="brinx-slut-tail"></li>
+            </ul>
+        </div>
+    </div>
+    <div class="brinx-section-right-container">
+        <div class="brinx-section-right">
+            <div class="brinx-section-right-ul">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/javascripts/index_articles.js"></script>
+<style type="text/css">
+    .br-head-container > h1{
+        color:#88c932;
+    }
+    .br-head-container > .lead{
+        color:#999;
+    }
+    .brinx-section-container{
+    }
+    .brinx-section-left-container{
+        width:430px;
+        margin-top:2em;
+        float:left;
+        min-height:1000px;
+    }
+    .brinx-section-right-container{
+        width:260px;
+        margin:2em 0 0 30px;
+        float:right;
+        border:1px solid #ccc;
+        min-height:1000px;
+    }
+    .brinx-section-left > ul{
+        padding:0;
+    }
+    .brinx-slul-head{
+        font-size:1.5em;
+        padding-bottom:8px;
+        color:#65c294;
+        border-bottom:1px solid #ccc;
+        list-style-type:none;
+    }
+    .brinx-slul-post{
+        padding:8px 0;
+        border-bottom:1px dashed #ccc;
+        list-style-type:none;
+    }
+    .brinx-slul-post > a{
+        display:inline-block;
+        width:400px;
+    }
+    .brinx-slut-tail{
+        min-height:2em;
+        list-style-type:none;
+    }
+    @media(min-width: 768px){
+        .brinx-section-left-container{
+            width:430px;
+        }
+        .brinx-section-right-container{
+            width:260px;
+        }
+    }
+    @media(min-width: 992px){
+        .brinx-section-left-container{
+            width:610px;
+        }
+        .brinx-section-right-container{
+            width:300px;
+        }
+    }
+    @media(min-width: 1200px){
+        .brinx-section-left-container{
+            width:770px;
+        }
+        .brinx-section-right-container{
+            width:340px;
+        }
+    }
+    
+</style>

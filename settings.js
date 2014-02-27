@@ -1,9 +1,9 @@
 module.exports = {
-	cookieSecret:"myname==webnano",
-	db:"webnano",
+	cookieSecret:"myname==Black rabbit",
+	db:"black_rabbit",
 	host:"127.0.0.1",
     admin_master:{
-        cxh:'cxh',
+        cxh:'blackrabbit',
         hx:'hx_admin_master'
     },
     power:{
@@ -14,5 +14,5 @@ module.exports = {
         admin:11
     },
     port:21305,
-    rootDir:'R:\\webnano\\'
+    rootDir:'R:\\B_rabbit\\'
 }

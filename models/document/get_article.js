@@ -7,13 +7,16 @@ module.exports = function(id,req,res){
     Document.getOne("articles",query,function(err,doc){
         if(err) throw err;
         if(doc){
-            var localtime = doc.time;
+            var localtime = new Date(doc.time);
             var article_state = doc.article_state;
             res.render('articles/article',{
                 title:doc.title,
                 content:doc.content,
                 author:doc.user,
-                time:localtime,
+                time:localtime.toLocaleString(),
+                post_label:doc.label,
+                status:doc.article_state,
+                catalog:doc.catalog
             });
         }else{
             return res.redirect('/404');

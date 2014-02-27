@@ -1,20 +1,8 @@
 $(document).ready(function(){
-    $('#file-source').change(function(){
-        $('#file-target').val($('#file-source').val());
-    });
-    
-    $('#file-source').mouseenter(function(){
-        $('#upload_btn').css("opacity","1");
-    });
-    $('#file-source').mouseleave(function(){
-        $('#upload_btn').css("opacity",".8");
-    });
-    
     $('#label-add').mousedown(function(){
 		var i = 0;
         var label_css = {
-			'width':'60%',
-    		'margin-left':'5.2em',
+			'width':'750px',
            	'margin-top':'1em'
 		}
         if($('#label-container').length == 0){
@@ -22,9 +10,9 @@ $(document).ready(function(){
         	$('#label-container').css(label_css);
         }
         if($('#label-add-input').val()){
-            var label_str = "<button type='button' class='label-upload'>"+$('#label-add-input').val()+"</button>"
+            var label_str = "<button type='button' class='btn br-btn-org br-btn-margin br-label-upload'>"+$('#label-add-input').val()+"</button>"
             $('#label-container').append($(label_str));
-            $('.label-upload').click(function(){this.remove();i--;});
+            $('.br-label-upload').click(function(){this.remove();i--;});
             $('#label-add-input').val('');
         }
         else{
